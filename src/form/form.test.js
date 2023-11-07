@@ -129,6 +129,7 @@ describe('when the user submits the form properly and the server returns created
   })
 })
 
+// Para error 500
 describe('when the user submits the form and the server returns an unexpected error', () => {
   it('the form page must display the error message "Unexpected error, please try again"', async () => {
     fireEvent.click(screen.getByRole('button', {name: /submit/i}))
@@ -141,8 +142,10 @@ describe('when the user submits the form and the server returns an unexpected er
   })
 })
 
+// Para error 400
 describe('when the user submits the form and the server returns an invalid request error', () => {
   it('the form page must display the error message "The form is invalid, the fields [field1...fieldN] are required"', async () => {
+    // Config. en la documentacion de msw
     server.use(
       rest.post('/products', (req, res, ctx) => {
         return res(
